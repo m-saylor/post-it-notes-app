@@ -1,15 +1,19 @@
 import React from 'react';
+import NoteItem from './note_item';
 
-function NotesContainer({ notes }) {
-    notes.map
-    for i in array 
-    {
-        NoteItem = notes[i]
-    }
+function NotesContainer({ notes, setNotes }) {
+  function renderNotesItems() {
+    const noteItems = notes.map((note, index) => {
+      return <NoteItem index={index} note={note} setNotes={setNotes} />;
+    });
 
-    function RenderNotesItems() {
-        
-    }
+    return noteItems;
+  }
+  return (
+    <div>
+      {renderNotesItems()}
+    </div>
+  );
 }
 
 export default NotesContainer;

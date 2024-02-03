@@ -9,7 +9,7 @@ function App(props) {
 
   return (
     <div id="content">
-      <AddNote title={title} setTitle={setTitle} />
+      <AddNote title={title} setTitle={setTitle} notes={notes} setNotes={setNotes} />
       <NotesContainer notes={notes} setNotes={setNotes} />
     </div>
   );
