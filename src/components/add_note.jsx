@@ -18,14 +18,13 @@ function AddNote({
       zIndex: 1,
     };
 
-    const newNotes = notes;
-    newNotes.push(newNote);
+    const newNotes = [...notes, newNote];
     setNotes(newNotes);
   }
 
   return (
     <div className="note">
-      <input onChange={onTitleChange} value={title} placeholder="Enter note title here..." />
+      <input placeholder="Enter note title here..." value={title} onChange={onTitleChange} />
       <button type="submit" onClick={addNoteItem}>Add</button>
     </div>
   );
