@@ -1,14 +1,11 @@
 import React from 'react';
 import NoteItem from './note_item';
 
-function getKey(index, title) {
-  return `${index}-${title}`;
-}
-
 function NotesContainer({ notes, setNotes }) {
   function renderNotesItems() {
-    const noteItems = notes.map((note, index) => {
-      return <NoteItem index={index} key={getKey(index, note.title)} notes={notes} setNotes={setNotes} />;
+    const noteArray = Object.keys(notes);
+    const noteItems = noteArray.map((key, index) => {
+      return <NoteItem id={key} key={key} notes={notes} setNotes={setNotes} />;
     });
 
     return noteItems;

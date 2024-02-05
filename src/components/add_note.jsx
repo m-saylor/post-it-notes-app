@@ -18,7 +18,10 @@ function AddNote({
       zIndex: 1,
     };
 
-    const newNotes = [...notes, newNote];
+    const id = `id${Object.entries(notes).length}`;
+
+    const newNotes = { ...notes };
+    newNotes[id] = newNote;
     setNotes(newNotes);
   }
 

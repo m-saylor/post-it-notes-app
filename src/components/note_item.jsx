@@ -4,9 +4,9 @@ import {
   faPenToSquare, faTrash, faArrowsUpDownLeftRight, faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
-function NoteItem({ notes, setNotes, index }) {
+function NoteItem({ notes, setNotes, id }) {
   // get the individual note at the specified index
-  const note = notes[index];
+  const note = notes[id];
 
   // initialize the states
   const [editMode, setEditMode] = useState(false);
@@ -20,11 +20,18 @@ function NoteItem({ notes, setNotes, index }) {
 
   // when save button is clicked
   const onSave = useCallback(() => {
-    const newNotes = [...notes];
-    newNotes[index] = { ...note, title, text };
+    const newNotes = { ...notes };
+    newNotes[id] = { ...note, title, text };
     setNotes(newNotes);
     setEditMode(false);
-  }, [note, notes, title, text, index, setNotes]);
+  }, [note, notes, title, text, id, setNotes]);
+
+  // when delete button is clicked
+  const onDelete = useCallback(() => {
+    const newNotes = { ...notes };
+    delete newNotes[id];
+    setNotes(newNotes);
+  }, [id, notes, setNotes]);
 
   // display the note element changes
   const onTitleChange = (event) => {
@@ -46,7 +53,7 @@ function NoteItem({ notes, setNotes, index }) {
         <img alt="" className="note-img" src={note.img} />
         <p><input placeholder="" value={text} onChange={onTextChange} /></p>
         <div className="note-footer">
-          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" />
+          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" onClick={onDelete} />
         </div>
       </div>
     );
@@ -62,7 +69,7 @@ function NoteItem({ notes, setNotes, index }) {
       <img alt="" className="note-img" src={note.img} />
       <p>{note.text}</p>
       <div className="note-footer">
-        <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" />
+        <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" onClick={onDelete} />
       </div>
     </div>
   );

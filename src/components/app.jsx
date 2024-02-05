@@ -5,7 +5,7 @@ import NotesContainer from './notes_container';
 function App(props) {
   // initialize the states
   const [title, setTitle] = useState('');
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState({});
 
   return (
     <div id="content">
