@@ -6,7 +6,6 @@ function getKey(index, title) {
 }
 
 function NotesContainer({ notes, setNotes }) {
-  console.log(notes);
   function renderNotesItems() {
     const noteItems = notes.map((note, index) => {
       return <NoteItem index={index} key={getKey(index, note.title)} notes={notes} setNotes={setNotes} />;

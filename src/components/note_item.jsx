@@ -22,10 +22,9 @@ function NoteItem({ notes, setNotes, index }) {
   const onSave = useCallback(() => {
     const newNotes = [...notes];
     newNotes[index] = { ...note, title, text };
-    console.log(newNotes);
     setNotes(newNotes);
     setEditMode(false);
-  }, []);
+  }, [note, notes, title, text, index, setNotes]);
 
   // display the note element changes
   const onTitleChange = (event) => {
