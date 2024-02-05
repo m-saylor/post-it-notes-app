@@ -37,29 +37,33 @@ function NoteItem({ notes, setNotes, index }) {
 
   if (editMode) {
     return (
-      <div>
+      <div className="note">
         <div className="note-header">
           <h3><input placeholder="" value={title} onChange={onTitleChange} /></h3>
           <FontAwesomeIcon className="save-button" icon={faCircleCheck} size="sm" style={{ color: '#b4ea90' }} onClick={onSave} />
-          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" />
           <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
         </div>
         <img alt="" className="note-img" src={note.img} />
         <p><input placeholder="" value={text} onChange={onTextChange} /></p>
+        <div className="note-footer">
+          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" />
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="note">
       <div className="note-header">
         <h3>{note.title}</h3>
         <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: '#000000' }} onClick={onEdit} />
-        <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" />
         <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
       </div>
       <img alt="" className="note-img" src={note.img} />
       <p>{note.text}</p>
+      <div className="note-footer">
+        <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" />
+      </div>
     </div>
   );
 }

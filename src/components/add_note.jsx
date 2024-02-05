@@ -23,7 +23,7 @@ function AddNote({
   }
 
   return (
-    <div className="note">
+    <div className="add-note-bar">
       <input placeholder="Enter note title here..." value={title} onChange={onTitleChange} />
       <button type="submit" onClick={addNoteItem}>Add</button>
     </div>
