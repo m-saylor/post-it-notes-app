@@ -69,7 +69,7 @@ function NoteItem({ notes, setNotes, id }) {
     return (
       <div className="note">
         <div className="note-header">
-          <h3><input placeholder="" value={title} onChange={onTitleChange} /></h3>
+          <h3><input className="edit-mode-title" placeholder="" value={title} onChange={onTitleChange} /></h3>
           <FontAwesomeIcon className="save-button" icon={faCircleCheck} size="sm" style={{ color: '#b4ea90' }} onClick={onSave} />
           <div className="top-right-icons">
             <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
