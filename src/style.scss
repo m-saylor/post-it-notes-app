@@ -1,5 +1,41 @@
+/* RockoFLF Regular */
+@font-face {
+  font-family: "RockoFLF";
+  src: url('fonts/rockoflf.ttf');
+  src: url('fonts/rockoflf.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* RockoFLF Bold */
+@font-face {
+  font-family: "RockoFLF";
+  src: url('fonts/rockoflf-bold.ttf');
+  src: url('fonts/rockoflf-bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* RockoFLF Bolder */
+@font-face {
+  font-family: "RockoFLF";
+  src: url('fonts/rockoultraflf.ttf');
+  src: url('fonts/rockoultraflf.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* RockoFLF Boldest */
+@font-face {
+  font-family: "RockoFLF";
+  src: url('fonts/rockoultraflf-bold.ttf');
+  src: url('fonts/rockoultraflf-bold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
 body, html {
-    font-family: "Roboto", sans-serif;
+    font-family: 'RockoFLF';
     height: 100%;
     margin: 0px 20px 10px 20px;
     background-color: lightgrey;
@@ -18,9 +54,35 @@ body, html {
   }
 
   .add-note-bar {
-    font-family: "Roboto", sans-serif;
-    color: black;
     margin: 30px 0px 30px 0px;
+  }
+
+  .add-note-bar > input {
+    border-radius: 5px;
+    margin-right: 3px;
+    border-style: solid;
+    font-family: 'RockoFLF';
+  }
+
+  .add-note-bar > button {
+    font-family: 'RockoFLF';
+    font-weight: 700;
+    border-radius: 10px;
+  }
+
+  .add-note-bar > button:hover {
+    cursor: pointer;
+  }
+
+  h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .note-text > p {
+    font-size: 14px;
+    font-weight: 400;
   }
 
   .note {
@@ -28,14 +90,35 @@ body, html {
     border-radius: 6px;
     padding-left: 4px;
     padding-right: 4px;
-    width: 250px;
+    max-width: 300px;
     box-shadow: 0 2px 8px 0 rgba(82, 69, 49, 0.3), 0 3px 20px 0 rgba(82, 69, 49, 0.29);
     background-color: white;
+    margin-top: 5px;
   }
 
   .note-header {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    margin: 1px 0.5px 1px 0.5px;
+  }
+
+  .sanrio-color-icons {
+    display: flex; 
+    flex-direction: row;
+    margin: 1px 1px 1px 1px;
+  }
+
+  .sanrio-color-icons > img {
+    max-width: 6px;
+  }
+
+  .top-right-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
   }
 
   .note-footer {
@@ -46,7 +129,7 @@ body, html {
   }
 
   .edit-button {
-    margin: 22px 4px 2px 10px;
+    margin: 5px 4px 2px 10px;
   }
 
   .edit-button:hover {
@@ -54,7 +137,7 @@ body, html {
   }
 
   .save-button {
-    margin: 24px 4px 2px 4px;
+    margin: 6px 4px 2px 4px;
   }
 
   .save-button:hover {
@@ -65,6 +148,14 @@ body, html {
     margin: 2px 4px 5px 4px;
   }
 
+  .delete-button:hover {
+    cursor: pointer;
+  }
+
   .move-button {
-    margin: 21px 4px 2px 4px;
+    margin: 5px 4px 2px 4px;
+  }
+
+  .move-button:hover {
+    cursor: pointer;
   }
