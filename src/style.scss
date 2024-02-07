@@ -100,8 +100,13 @@ body, html {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
     width: 100%;
     margin: 1px 0.5px 1px 0.5px;
+  }
+
+  .left-container {
+    display: flex;
   }
 
   .sanrio-color-icons {

@@ -97,19 +97,19 @@ function NoteItem({ notes, setNotes, id }) {
     >
       <div className="note">
         <div className="note-header">
-          <h3>{note.title}</h3>
-          <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: '#000000' }} onClick={onEdit} />
-          <div className="sanrio-color-icons">
-            <img alt="" src="media/head-hello-kitty.png" />
-            <img alt="" src="media/head-kuromi.png" />
-            <img alt="" src="media/head-my-melody.png" />
-            <img alt="" src="media/head-pompompurin.png" />
-            <img alt="" src="media/head-keroppi.png" />
-            <img alt="" src="media/head-tuxeo-sam.png" />
+          <div className="left-container">
+            <h3>{note.title}</h3>
+            <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: '#000000' }} onClick={onEdit} />
+            <div className="sanrio-color-icons">
+              <img alt="" src="src/media/head-hello-kitty.png" />
+              <img alt="" src="src/media/head-kuromi.png" />
+              <img alt="" src="src/media/head-my-melody.png" />
+              <img alt="" src="src/media/head-pompompurin.png" />
+              <img alt="" src="src/media/head-keroppi.png" />
+              <img alt="" src="src/media/head-tuxeo-sam.png" />
+            </div>
           </div>
-          <div className="top-right-icons">
-            <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
-          </div>
+          <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
         </div>
         <ReactMarkdown className="note-img">{note.img || ''}</ReactMarkdown>
         <ReactMarkdown className="note-text">{note.text || ''}</ReactMarkdown>
