@@ -38,15 +38,17 @@ body, html {
     font-family: 'RockoFLF';
     height: 100%;
     margin: 0px 20px 10px 20px;
-    background-color: lightgrey;
+    background-color: #f5f5f5;
   }
 
-  .logo {
-    background-image: url('img/MYIMAGE.jpg');
-    width: 100px;
-    height: 100px;
-    background-repeat: no-repeat;
-    background-size: contain;
+  #sanrio-notes-logo {
+    width: 400px;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 195px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   :root {
@@ -54,20 +56,39 @@ body, html {
   }
 
   .add-note-bar {
-    margin: 30px 0px 30px 0px;
+    margin: 0px 0px 30px 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #bow-icon {
+    max-width: 35px;
+    margin-right: 290px;
+    margin-bottom: 11px;
+    z-index: 1;
+    position: absolute;
   }
 
   .add-note-bar > input {
     border-radius: 5px;
-    margin-right: 3px;
     border-style: solid;
     font-family: 'RockoFLF';
+    width: 240px;
+    z-index: 0;
+    margin: 30px 3px 10px 15px;
+    height: 25px;
+    font-size: 17px;
   }
 
   .add-note-bar > button {
-    font-family: 'RockoFLF';
+    font-family: "RockoFLF";
     font-weight: 700;
-    border-radius: 10px;
+    font-size: 16px;
+    border-radius: 14px;
+    height: fit-content;
+    padding: 5px;
+    margin-top: 15px;
   }
 
   .add-note-bar > button:hover {
@@ -75,7 +96,7 @@ body, html {
   }
 
   h3 {
-    margin: 0;
+    margin: 0px 4px 0.5px 0px;
     font-weight: 600;
     font-size: 18px;
   }
@@ -94,6 +115,11 @@ body, html {
     box-shadow: 0 2px 8px 0 rgba(82, 69, 49, 0.3), 0 3px 20px 0 rgba(82, 69, 49, 0.29);
     background-color: white;
     margin-top: 5px;
+    display: flex;
+    min-height: 75px;
+    padding-bottom: 0;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .note-header {
@@ -116,21 +142,32 @@ body, html {
   }
 
   .sanrio-color-icons > img {
-    max-width: 6px;
+    width: 25px;
+    cursor: pointer;
+  }
+
+  #hello-kitty-emoji {
+    width: 25px;
+    height: 25px;
+  }
+
+  #my-melody-emoji {
+    width: 22px;
   }
 
   .top-right-icons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    width: 100%;
   }
 
   .note-footer {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
 
   .edit-button {

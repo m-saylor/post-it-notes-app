@@ -6,7 +6,57 @@ import {
   faPenToSquare, faTrash, faArrowsUpDownLeftRight, faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
-function NoteItem({ notes, setNotes, id }) {
+// set the styles for each character
+function getStyles(character) {
+  const helloKittyStyles = {
+    backgroundColor: '#fffef9',
+    color: '#000000',
+    accent: '#e01334',
+  };
+
+  const kuromiStyles = {
+    backgroundColor: '#000000',
+    color: '#fffef9',
+    accent: '#f3a7c1',
+  };
+
+  const myMelodyStyles = {
+    backgroundColor: '#f2b5d1',
+    color: '#693e2e',
+    accent: '#693e2e',
+  };
+
+  const pompompurinStyles = {
+    backgroundColor: '#523330',
+    color: '#ffec2f',
+    accent: '#ad7f7a',
+  };
+
+  const keroppiStyles = {
+    backgroundColor: '#dfe58d',
+    color: '#d394aa',
+    accent: '#d394aa',
+  };
+
+  switch (character) {
+    case 1:
+      return (helloKittyStyles);
+    case 2:
+      return (kuromiStyles);
+    case 3:
+      return (myMelodyStyles);
+    case 4:
+      return (pompompurinStyles);
+    case 5:
+      return (keroppiStyles);
+    default:
+      return (helloKittyStyles);
+  }
+}
+
+function NoteItem({
+  notes, setNotes, id, maxZIndex, setMaxZindex, defaultY,
+}) {
   // get the individual note at the specified index
   const note = notes[id];
 
@@ -17,9 +67,7 @@ function NoteItem({ notes, setNotes, id }) {
   const [img, setImg] = useState(note.img);
   const [position, setPosition] = useState({ x: note.x, y: note.y });
   const [zIndex, setZindex] = useState(note.z);
-
-  // create a max z-index variable to move most recent note to front
-  let maxZIndex = 0;
+  const [character, setCharacter] = useState(1);
 
   // when edit button is clicked
   const onEdit = useCallback(() => {
@@ -58,20 +106,23 @@ function NoteItem({ notes, setNotes, id }) {
 
   const onPositionChange = (e, data) => {
     // move note to front via z-index
-    maxZIndex += 1;
+    setMaxZindex(maxZIndex + 1);
     setZindex(maxZIndex);
 
     // set the new position to the dragged position
     setPosition({ x: data.x, y: data.y });
   };
 
+  // set style variables
+  const noteStyle = getStyles(character);
+
   if (editMode) {
     return (
-      <div className="note">
+      <div className="note" style={noteStyle}>
         <div className="note-header">
           <h3><input className="edit-mode-title" placeholder="" value={title} onChange={onTitleChange} /></h3>
-          <FontAwesomeIcon className="save-button" icon={faCircleCheck} size="sm" style={{ color: '#b4ea90' }} onClick={onSave} />
           <div className="top-right-icons">
+            <FontAwesomeIcon className="save-button" icon={faCircleCheck} size="sm" onClick={onSave} />
             <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
           </div>
         </div>
@@ -86,35 +137,37 @@ function NoteItem({ notes, setNotes, id }) {
 
   return (
     <Draggable
-      defaultPosition={{ x: 20, y: 20 }} // if no position given
+      defaultPosition={{ x: 0, y: 0 }} // if no position given
       grid={[1, 1]}
       handle=".move-button"
       position={{
         x: position.x, y: position.y,
       }}
-      style={{ zIndex: { zIndex }, position: 'absolute' }}
       onDrag={onPositionChange}
     >
-      <div className="note">
+      <div className="note"
+        style={{ zIndex, position: 'relative', ...noteStyle }}
+      >
         <div className="note-header">
           <div className="left-container">
             <h3>{note.title}</h3>
-            <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: '#000000' }} onClick={onEdit} />
-            <div className="sanrio-color-icons">
-              <img alt="" src="src/media/head-hello-kitty.png" />
-              <img alt="" src="src/media/head-kuromi.png" />
-              <img alt="" src="src/media/head-my-melody.png" />
-              <img alt="" src="src/media/head-pompompurin.png" />
-              <img alt="" src="src/media/head-keroppi.png" />
-              <img alt="" src="src/media/head-tuxeo-sam.png" />
-            </div>
           </div>
-          <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
+          <div className="top-right-icons">
+            <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: noteStyle.accent }} onClick={onEdit} />
+            <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
+          </div>
         </div>
         <ReactMarkdown className="note-img">{note.img || ''}</ReactMarkdown>
         <ReactMarkdown className="note-text">{note.text || ''}</ReactMarkdown>
         <div className="note-footer">
-          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" onClick={onDelete} />
+          <div className="sanrio-color-icons">
+            <img alt="" id="hello-kitty-emoji" src="src/media/head-hello-kitty.png" onClick={() => setCharacter(1)} />
+            <img alt="" src="src/media/head-kuromi.png" onClick={() => setCharacter(2)} />
+            <img alt="" id="my-melody-emoji" src="src/media/head-my-melody.png" onClick={() => setCharacter(3)} />
+            <img alt="" src="src/media/head-pompompurin.png" onClick={() => setCharacter(4)} />
+            <img alt="" src="src/media/head-keroppi.png" onClick={() => setCharacter(5)} />
+          </div>
+          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" style={{ color: noteStyle.accent }} onClick={onDelete} />
         </div>
       </div>
     </Draggable>

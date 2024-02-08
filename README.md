@@ -9,3 +9,6 @@ Enter a note title into the add note bar at the top of the screen to get started
 Click the edit button to edit the title, image, or text of the note.
 Click the move button to drag the note anywhere on the screen and move the note to the front.
 Click the delete button to delete the note.
+
+## Credits
+I used this [website](https://www.textstudio.com/) to create the "Sanrio Notes" logo.

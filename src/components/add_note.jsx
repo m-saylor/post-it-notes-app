@@ -30,6 +30,7 @@ function AddNote({
 
   return (
     <div className="add-note-bar">
+      <img alt="" id="bow-icon" src="src/media/bow-icon.png" />
       <input placeholder="Enter note title here..." value={title} onChange={onTitleChange} />
       <button type="submit" onClick={addNoteItem}>Add</button>
     </div>
