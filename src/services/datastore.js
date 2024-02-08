@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import firebase from 'firebase/app';
+import 'firebase/compat/database';
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -10,12 +10,20 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 // Initialize Realtime Database and get a reference to the service
-const database = getDatabase(app);
+const database = firebase.database();
+
+export function createNote(note) {
+  database.ref('notes');
+}
 
 export function onNotesValueChange(callback) {
-  // do something here
+  database.ref('notes').on('value', (snapshot) => {
+    const newNoteState = snapshot.val();
+    // do something with new note state
+  });
+
   // callback() when done
 }
