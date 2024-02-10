@@ -1,5 +1,5 @@
 import React, {
-  useState, useCallback,
+  useState, useCallback, useEffect,
 } from 'react';
 import Draggable from 'react-draggable';
 import ReactMarkdown from 'react-markdown';
@@ -14,16 +14,28 @@ function NoteItem({
   notes, setNotes, id, maxZIndex, setMaxZindex, defaultY,
 }) {
   // get the individual note at the specified index
-  const note = notes[id];
+  const initialNote = notes[id];
 
   // initialize the states
   const [editMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState(note.title);
-  const [text, setText] = useState(note.text);
-  const [img, setImg] = useState(note.img);
-  const [position, setPosition] = useState({ x: note.x, y: note.y });
-  const [zIndex, setZindex] = useState(note.z);
-  const [character, setCharacter] = useState(note.style);
+  const [title, setTitle] = useState(initialNote.title);
+  const [text, setText] = useState(initialNote.text);
+  const [img, setImg] = useState(initialNote.img);
+  const [position, setPosition] = useState({ x: initialNote.x, y: initialNote.y });
+  const [zIndex, setZindex] = useState(initialNote.z);
+  const [character, setCharacter] = useState(initialNote.style);
+
+  useEffect(() => {
+    const note = notes[id];
+
+    // update note fields
+    setTitle(note.title);
+    setText(note.text);
+    setImg(note.img);
+    setPosition({ x: note.x, y: note.y });
+    setZindex(note.z);
+    setCharacter(note.style);
+  }, [id, notes]);
 
   // when edit button is clicked
   const onEdit = useCallback(() => {
@@ -33,11 +45,11 @@ function NoteItem({
   // when save button is clicked
   const onSave = useCallback(() => {
     const newNote = {
-      ...note, title, img, text, x: position.x, y: position.y, z: zIndex,
+      ...initialNote, title, img, text, x: position.x, y: position.y, z: zIndex,
     };
     updateNote(id, newNote);
     setEditMode(false);
-  }, [note, title, img, text, position.x, position.y, zIndex, id]);
+  }, [initialNote, title, img, text, position.x, position.y, zIndex, id]);
 
   // when delete button is clicked
   const onDelete = useCallback(() => {
@@ -67,7 +79,7 @@ function NoteItem({
 
     // store the position in the database
     const newNote = {
-      ...note, x: position.x, y: position.y, z: zIndex,
+      ...initialNote, x: position.x, y: position.y, z: zIndex,
     };
     updateNote(id, newNote);
   };
@@ -78,7 +90,7 @@ function NoteItem({
 
     // store the position in the database
     const newNote = {
-      ...note, style: c,
+      ...initialNote, style: c,
     };
     updateNote(id, newNote);
   }
@@ -130,15 +142,15 @@ function NoteItem({
       >
         <div className="note-header">
           <div className="left-container">
-            <h3>{note.title}</h3>
+            <h3>{title}</h3>
           </div>
           <div className="top-right-icons">
             <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: noteStyle.accent }} onClick={onEdit} />
             <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
           </div>
         </div>
-        <ReactMarkdown className="note-img">{note.img || ''}</ReactMarkdown>
-        <ReactMarkdown className="note-text">{note.text || ''}</ReactMarkdown>
+        <ReactMarkdown className="note-img">{img || ''}</ReactMarkdown>
+        <ReactMarkdown className="note-text">{text || ''}</ReactMarkdown>
         <div className="note-footer">
           <div className="sanrio-color-icons">
             <img alt="" id="hello-kitty-emoji" src="src/media/head-hello-kitty.png" onClick={() => onStyleChange(1)} />
