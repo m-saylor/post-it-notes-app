@@ -22,6 +22,7 @@ function AddNote({
       z: 1,
     };
 
+    // previous front-end only syntax, changed when added firebase DB
     // setId(id + 1);
 
     // const newNotes = { ...notes };

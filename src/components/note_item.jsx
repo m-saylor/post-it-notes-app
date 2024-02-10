@@ -8,54 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPenToSquare, faTrash, faArrowsUpDownLeftRight, faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
-
-// set the styles for each character
-function getStyles(character) {
-  const helloKittyStyles = {
-    backgroundColor: '#fffef9',
-    color: '#000000',
-    accent: '#e01334',
-  };
-
-  const kuromiStyles = {
-    backgroundColor: '#000000',
-    color: '#fffef9',
-    accent: '#f3a7c1',
-  };
-
-  const myMelodyStyles = {
-    backgroundColor: '#f2b5d1',
-    color: '#693e2e',
-    accent: '#693e2e',
-  };
-
-  const pompompurinStyles = {
-    backgroundColor: '#523330',
-    color: '#ffec2f',
-    accent: '#ad7f7a',
-  };
-
-  const keroppiStyles = {
-    backgroundColor: '#dfe58d',
-    color: '#d394aa',
-    accent: '#d394aa',
-  };
-
-  switch (character) {
-    case 1:
-      return (helloKittyStyles);
-    case 2:
-      return (kuromiStyles);
-    case 3:
-      return (myMelodyStyles);
-    case 4:
-      return (pompompurinStyles);
-    case 5:
-      return (keroppiStyles);
-    default:
-      return (helloKittyStyles);
-  }
-}
+import getStyles from '../utils/style-utils';
+import { deleteNote, updateNote } from '../services/datastore';
 
 function NoteItem({
   notes, setNotes, id, maxZIndex, setMaxZindex, defaultY,
@@ -79,20 +33,17 @@ function NoteItem({
 
   // when save button is clicked
   const onSave = useCallback(() => {
-    const newNotes = { ...notes };
-    newNotes[id] = {
-      ...note, title, img, text,
+    const newNote = {
+      ...note, title, img, text, x: position.x, y: position.y, z: zIndex,
     };
-    setNotes(newNotes);
+    updateNote(id, newNote);
     setEditMode(false);
-  }, [note, notes, title, text, img, id, setNotes]);
+  }, [note, title, img, text, position.x, position.y, zIndex, id]);
 
   // when delete button is clicked
   const onDelete = useCallback(() => {
-    const newNotes = { ...notes };
-    delete newNotes[id];
-    setNotes(newNotes);
-  }, [id, notes, setNotes]);
+    deleteNote(id);
+  }, [id]);
 
   // display the note element changes
   const onTitleChange = (event) => {
