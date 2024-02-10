@@ -96,14 +96,18 @@ body, html {
   }
 
   h3 {
-    margin: 0px 4px 0.5px 0px;
+    margin: 0px 4px 0.5px 12px;
     font-weight: 600;
     font-size: 18px;
+    word-break: break-word;
   }
 
   .note-text > p {
     font-size: 14px;
     font-weight: 400;
+    word-break: break-word;
+    margin-left: 15px;
+    margin-right: 8px;
   }
 
   .note {
@@ -224,4 +228,10 @@ body, html {
     height: 50px;
     border-style: dotted;
     border-radius: 6px;
+  }
+
+  .note-img > p > img {
+    max-width: 270px;
+    margin-left: 12px;
+    border-radius: 4px;
   }
