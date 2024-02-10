@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddNote from './add_note';
 import NotesContainer from './notes_container';
+import { onNotesValueChange } from '../services/datastore';
 
 function App(props) {
   // initialize the states
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState({});
+
+  useEffect(() => {
+    onNotesValueChange(setNotes);
+  }, []);
+
+  if (!notes) {
+    return null;
+  }
 
   return (
     <div id="content">

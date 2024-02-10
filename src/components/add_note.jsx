@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { createNewNote } from '../services/datastore';
 
 function AddNote({
   title, setTitle, notes, setNotes,
 }) {
   // initialize a counter variable state for unique id keys
-  const [id, setId] = useState(0);
+  // const [id, setId] = useState(0);
 
   const onTitleChange = (event) => {
     setTitle(event.target.value);
@@ -21,11 +22,12 @@ function AddNote({
       z: 1,
     };
 
-    setId(id + 1);
+    // setId(id + 1);
 
-    const newNotes = { ...notes };
-    newNotes[id] = newNote;
-    setNotes(newNotes);
+    // const newNotes = { ...notes };
+    // newNotes[id] = newNote;
+    // setNotes(newNotes);
+    createNewNote(newNote);
   }
 
   return (
