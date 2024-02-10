@@ -14,7 +14,7 @@ function NotesContainer({ notes, setNotes }) {
     return noteItems;
   }
   return (
-    <div>
+    <div className="notes-container">
       {renderNotesItems()}
     </div>
   );

@@ -31,7 +31,6 @@ export function onNotesValueChange(callback) {
   onValue(notesRef, (snapshot) => {
     const data = snapshot.val();
     // callback() when done
-    console.log(data);
     callback(data);
   });
 }

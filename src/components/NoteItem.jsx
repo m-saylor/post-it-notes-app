@@ -97,7 +97,7 @@ function NoteItem({
         }}
         onDrag={onPositionChange}
       >
-        <div className="note" style={noteStyle}>
+        <div className="note" style={{ zIndex, position: 'relative', ...noteStyle }}>
           <div className="note-header">
             <h3><input className="edit-mode-title" placeholder="" value={title} onChange={onTitleChange} /></h3>
             <div className="top-right-icons">

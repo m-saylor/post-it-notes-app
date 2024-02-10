@@ -37,7 +37,7 @@
 body, html {
     font-family: 'RockoFLF';
     height: 100%;
-    margin: 0px 20px 10px 20px;
+    margin: 0px 60px 10px 60px;
     background-color: #f5f5f5;
   }
 
@@ -95,6 +95,12 @@ body, html {
     cursor: pointer;
   }
 
+  .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   h3 {
     margin: 0px 4px 0.5px 12px;
     font-weight: 600;
@@ -116,14 +122,16 @@ body, html {
     padding-left: 4px;
     padding-right: 4px;
     max-width: 300px;
+    min-width: 300px;
     box-shadow: 0 2px 8px 0 rgba(82, 69, 49, 0.3), 0 3px 20px 0 rgba(82, 69, 49, 0.29);
     background-color: white;
-    margin-top: 5px;
+    margin-top: 25px;
     display: flex;
     min-height: 75px;
     padding-bottom: 0;
     flex-direction: column;
     justify-content: space-between;
+    margin-right: 25px;
   }
 
   .note-header {
@@ -244,4 +252,16 @@ body, html {
     height: fit-content;
     padding: 5px;
     margin-top: 15px;
+    margin-bottom: 35px;
+  }
+
+  .clear-button:hover {
+    cursor: pointer;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
   }
