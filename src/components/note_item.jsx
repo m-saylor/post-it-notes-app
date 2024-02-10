@@ -1,4 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, {
+  useState, useCallback,
+} from 'react';
 import Draggable from 'react-draggable';
 import { Resizable } from 're-resizable';
 import ReactMarkdown from 'react-markdown';
@@ -119,14 +121,10 @@ function NoteItem({
 
   if (editMode) {
     return (
-      <Resizable
-        size={{ width: this.state.width, height: this.state.height }}
-        onResizeStop={(e, direction, ref, d) => {
-          this.setState({
-            width: this.state.width + d.width,
-            height: this.state.height + d.height,
-          });
-        }}
+      <Resizable defaultSize={{
+        width: 320,
+        height: 500,
+      }}
       >
         <Draggable
           defaultPosition={{ x: 0, y: 0 }} // if no position given
@@ -157,41 +155,47 @@ function NoteItem({
   }
 
   return (
-    <Draggable
-      defaultPosition={{ x: 0, y: 0 }} // if no position given
-      grid={[1, 1]}
-      handle=".move-button"
-      position={{
-        x: position.x, y: position.y,
-      }}
-      onDrag={onPositionChange}
+    <Resizable defaultSize={{
+      width: 320,
+      height: 500,
+    }}
     >
-      <div className="note"
-        style={{ zIndex, position: 'relative', ...noteStyle }}
+      <Draggable
+        defaultPosition={{ x: 0, y: 0 }} // if no position given
+        grid={[1, 1]}
+        handle=".move-button"
+        position={{
+          x: position.x, y: position.y,
+        }}
+        onDrag={onPositionChange}
       >
-        <div className="note-header">
-          <div className="left-container">
-            <h3>{note.title}</h3>
+        <div className="note"
+          style={{ zIndex, position: 'relative', ...noteStyle }}
+        >
+          <div className="note-header">
+            <div className="left-container">
+              <h3>{note.title}</h3>
+            </div>
+            <div className="top-right-icons">
+              <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: noteStyle.accent }} onClick={onEdit} />
+              <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
+            </div>
           </div>
-          <div className="top-right-icons">
-            <FontAwesomeIcon className="edit-button" icon={faPenToSquare} size="sm" style={{ color: noteStyle.accent }} onClick={onEdit} />
-            <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
+          <ReactMarkdown className="note-img">{note.img || ''}</ReactMarkdown>
+          <ReactMarkdown className="note-text">{note.text || ''}</ReactMarkdown>
+          <div className="note-footer">
+            <div className="sanrio-color-icons">
+              <img alt="" id="hello-kitty-emoji" src="src/media/head-hello-kitty.png" onClick={() => setCharacter(1)} />
+              <img alt="" src="src/media/head-kuromi.png" onClick={() => setCharacter(2)} />
+              <img alt="" id="my-melody-emoji" src="src/media/head-my-melody.png" onClick={() => setCharacter(3)} />
+              <img alt="" src="src/media/head-pompompurin.png" onClick={() => setCharacter(4)} />
+              <img alt="" src="src/media/head-keroppi.png" onClick={() => setCharacter(5)} />
+            </div>
+            <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" style={{ color: noteStyle.accent }} onClick={onDelete} />
           </div>
         </div>
-        <ReactMarkdown className="note-img">{note.img || ''}</ReactMarkdown>
-        <ReactMarkdown className="note-text">{note.text || ''}</ReactMarkdown>
-        <div className="note-footer">
-          <div className="sanrio-color-icons">
-            <img alt="" id="hello-kitty-emoji" src="src/media/head-hello-kitty.png" onClick={() => setCharacter(1)} />
-            <img alt="" src="src/media/head-kuromi.png" onClick={() => setCharacter(2)} />
-            <img alt="" id="my-melody-emoji" src="src/media/head-my-melody.png" onClick={() => setCharacter(3)} />
-            <img alt="" src="src/media/head-pompompurin.png" onClick={() => setCharacter(4)} />
-            <img alt="" src="src/media/head-keroppi.png" onClick={() => setCharacter(5)} />
-          </div>
-          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" style={{ color: noteStyle.accent }} onClick={onDelete} />
-        </div>
-      </div>
-    </Draggable>
+      </Draggable>
+    </Resizable>
   );
 }
 
