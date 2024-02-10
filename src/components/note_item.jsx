@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import Draggable from 'react-draggable';
+import { Resizable } from 're-resizable';
 import ReactMarkdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -118,20 +119,40 @@ function NoteItem({
 
   if (editMode) {
     return (
-      <div className="note" style={noteStyle}>
-        <div className="note-header">
-          <h3><input className="edit-mode-title" placeholder="" value={title} onChange={onTitleChange} /></h3>
-          <div className="top-right-icons">
-            <FontAwesomeIcon className="save-button" icon={faCircleCheck} size="sm" onClick={onSave} />
-            <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
+      <Resizable
+        size={{ width: this.state.width, height: this.state.height }}
+        onResizeStop={(e, direction, ref, d) => {
+          this.setState({
+            width: this.state.width + d.width,
+            height: this.state.height + d.height,
+          });
+        }}
+      >
+        <Draggable
+          defaultPosition={{ x: 0, y: 0 }} // if no position given
+          grid={[1, 1]}
+          handle=".move-button"
+          position={{
+            x: position.x, y: position.y,
+          }}
+          onDrag={onPositionChange}
+        >
+          <div className="note" style={noteStyle}>
+            <div className="note-header">
+              <h3><input className="edit-mode-title" placeholder="" value={title} onChange={onTitleChange} /></h3>
+              <div className="top-right-icons">
+                <FontAwesomeIcon className="save-button" icon={faCircleCheck} size="sm" onClick={onSave} />
+                <FontAwesomeIcon className="move-button" icon={faArrowsUpDownLeftRight} size="sm" />
+              </div>
+            </div>
+            <input className="note-img-edit" placeholder="image:" value={img} onChange={onImgChange} />
+            <p><input className="note-text-edit" placeholder="text:" value={text} onChange={onTextChange} /></p>
+            <div className="note-footer">
+              <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" onClick={onDelete} />
+            </div>
           </div>
-        </div>
-        <input className="note-img-edit" placeholder="" value={img} onChange={onImgChange} />
-        <p><input className="note-text-edit" placeholder="" value={text} onChange={onTextChange} /></p>
-        <div className="note-footer">
-          <FontAwesomeIcon className="delete-button" icon={faTrash} size="sm" onClick={onDelete} />
-        </div>
-      </div>
+        </Draggable>
+      </Resizable>
     );
   }
 

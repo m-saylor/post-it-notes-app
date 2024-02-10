@@ -203,7 +203,25 @@ body, html {
   }
 
   .edit-mode-title {
-    border-style: none;
+    border-style: dotted;
+    border-radius: 6px;
     font-weight: 600;
     font-size: 18px;
+  }
+
+  .note-img-edit {
+    margin-top: 5px;
+    width: 200px;
+    height: 40px;
+    border-style: dotted;
+    border-radius: 6px;
+  }
+
+  .note-text-edit {
+    margin-top: 5px;
+    margin-bottom: 0;
+    width: 250px;
+    height: 50px;
+    border-style: dotted;
+    border-radius: 6px;
   }

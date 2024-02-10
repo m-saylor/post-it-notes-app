@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 export function createNote(note) {
-  database.ref('notes');
+  database.ref('notes').set(note);
 }
 
 export function onNotesValueChange(callback) {
