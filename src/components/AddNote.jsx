@@ -20,6 +20,7 @@ function AddNote({
       x: 0,
       y: 0,
       z: 1,
+      style: 1,
     };
 
     // previous front-end only syntax, changed when added firebase DB

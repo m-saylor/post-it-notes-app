@@ -50,3 +50,8 @@ export function deleteNote(noteId) {
   const noteRef = ref(db, `notes/${noteId}`);
   remove(noteRef);
 }
+
+export function deleteAllNotes(notes) {
+  const notesRef = ref(db, 'notes/');
+  remove(notesRef);
+}

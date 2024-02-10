@@ -1,7 +1,7 @@
 # Sanrio Post-It Notes App
-This web application is a Sanrio-themed "post-it" style live notes app created with React, JS, SCSS, and a Firebase DB backend. Users can create notes, move them in 3 different planes, edit, delete, and cleaer them. The notes have markdown support. The persistent storage and update of notes is hosted with Firebase. 
+This web application is a Sanrio-themed "post-it" style live notes app created with React, JS, SCSS, and a Firebase DB on the backend. Users can create notes, move them in 3 different planes, edit, delete, and clear them. The notes are draggable and have markdown support. Each note can be customized and coded with a different Sanrio character: Hello Kitty, Kuromi, My Melody, Pompompurin, and Keroppi. Each character code group has a different color scheme for the background, text, and accent colors. All of this data is stored and saved. The persistent storage and update of notes is hosted with Firebase. 
 
-## Instructions
+## Installation Instructions
 You will need to run 'npm install' at the command line to install the necessary packages.
 
 ## How to Use

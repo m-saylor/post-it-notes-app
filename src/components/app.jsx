@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import AddNote from './add_note';
-import NotesContainer from './notes_container';
+import AddNote from './AddNote';
+import NotesContainer from './NotesContainer';
 import { onNotesValueChange } from '../services/datastore';
 
 function App(props) {

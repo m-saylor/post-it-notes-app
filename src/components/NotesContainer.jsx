@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NoteItem from './note_item';
+import NoteItem from './NoteItem';
 
 function NotesContainer({ notes, setNotes }) {
   // set a max z-index variable to increment
