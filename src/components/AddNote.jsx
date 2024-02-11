@@ -1,8 +1,9 @@
 import React from 'react';
 import { createNewNote } from '../services/datastore';
+import { getPosition } from '../utils/position-utils';
 
 function AddNote({
-  title, setTitle, notes, setNotes,
+  title, setTitle, notes,
 }) {
   // initialize a counter variable state for unique id keys
   // const [id, setId] = useState(0);
@@ -13,12 +14,15 @@ function AddNote({
 
   // define a function to add the note to the notes
   function addNoteItem() {
+    const length = notes ? Object.keys(notes).length : 0;
+    const { x, y } = getPosition(length);
+
     const newNote = {
       title,
       img: '',
       text: '',
-      x: 0,
-      y: 0,
+      x,
+      y,
       z: 1,
       style: 1,
     };
