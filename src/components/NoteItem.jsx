@@ -37,8 +37,6 @@ function NoteItem({
     setCharacter(note.style);
   }, [id, notes]);
 
-  console.log(title, zIndex);
-
   // when edit button is clicked
   const onEdit = useCallback(() => {
     // move note to front via z-index
