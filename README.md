@@ -16,6 +16,8 @@ You will need to run 'npm install' at the command line to install the necessary 
 <p>Click the edit button to edit the title, image, or text of the note.</p>
 <p>Click the move button to drag the note anywhere on the screen and move the note to the front.</p>
 <p>Click the delete button to delete the note.</p>
+<p>Click the Sanrio characters to customize the note's theme (color scheme).</p>
+<p>Click the "clear all" button to delete all of the notes.</p>
 
 <img src="https://github.com/m-saylor/sanrio-notes/blob/main/readme-media/Sanrio-Notes-Add1.gif" width="50%" height="50%" />
 
