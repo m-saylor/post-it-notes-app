@@ -37,10 +37,15 @@ function NoteItem({
     setCharacter(note.style);
   }, [id, notes]);
 
+  console.log(title, zIndex);
+
   // when edit button is clicked
   const onEdit = useCallback(() => {
+    // move note to front via z-index
+    setMaxZindex(maxZIndex + 1);
+    setZindex(maxZIndex);
     setEditMode(true);
-  }, []);
+  }, [maxZIndex, setMaxZindex]);
 
   // when save button is clicked
   const onSave = useCallback(() => {
@@ -72,7 +77,7 @@ function NoteItem({
   const onPositionChange = (e, data) => {
     // move note to front via z-index
     setMaxZindex(maxZIndex + 1);
-    setZindex(maxZIndex);
+    setZindex(maxZIndex + 1);
 
     // set the new position to the dragged position
     setPosition({ x: data.x, y: data.y });
@@ -109,7 +114,7 @@ function NoteItem({
         }}
         onDrag={onPositionChange}
       >
-        <div className="note" style={{ zIndex, position: 'relative', ...noteStyle }}>
+        <div className="note" style={{ zIndex, position: 'absolute', ...noteStyle }}>
           <div className="note-header">
             <h3><input className="edit-mode-title" placeholder="" value={title} onChange={onTitleChange} /></h3>
             <div className="top-right-icons">
@@ -138,7 +143,7 @@ function NoteItem({
       onDrag={onPositionChange}
     >
       <div className="note"
-        style={{ zIndex, position: 'relative', ...noteStyle }}
+        style={{ zIndex, position: 'absolute', ...noteStyle }}
       >
         <div className="note-header">
           <div className="left-container">
